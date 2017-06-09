@@ -1,7 +1,7 @@
 let express = require('express');
 let router = express.Router();
-let userApiLogic = require('./userApiLogic');
-let todoListApiLogic = require('./todoListApiLogic');
+let userApiLogic = require('./user-api-logic');
+let todoListApiLogic = require('./todo-list-api-logic');
 
 router.post('/api/users', userApiLogic.createUser);
 router.get('/api/users/:userId', userApiLogic.getUser);

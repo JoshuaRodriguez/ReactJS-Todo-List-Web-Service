@@ -14,7 +14,7 @@ require('dotenv').config();
 require('./db/db');
 
 // Set up routing paths
-let apiRoutes = require('./api/apiRoutes');
+let apiRoutes = require('./api/api-routes');
 
 // Extract express app 
 let app = express();
