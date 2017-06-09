@@ -4,6 +4,7 @@ let path = require('path');
 let logger = require('morgan');
 let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
+let cors = require('cors');
 let helpers = require('./helpers');
 
 // Allow access to environment variables
@@ -19,6 +20,7 @@ let apiRoutes = require('./api/apiRoutes');
 let app = express();
 
 // Let express use the following middle ware
+app.use(cors());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

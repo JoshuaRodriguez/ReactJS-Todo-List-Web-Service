@@ -7,7 +7,7 @@ module.exports = (function() {
             statusMessage = 'Internal Server Error';
         }
         return statusMessage;
-    }
+    };
 
     return {
         determineErrorMessage

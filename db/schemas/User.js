@@ -1,13 +1,24 @@
 let mongoose = require('mongoose');
 let bcrypt = require('bcrypt');
 
+let TodoList = require('./TodoList');
+
 let Schema = mongoose.Schema;
 let SALT_WORK_FACTOR = 10;
 
 let userSchema = new Schema({
-    username: { type: String, required: true },
-    password: { type: String, required: true },
-    todoLists: [{ type: String, ref: 'TodoList'}]
+    username: { 
+        type: String, 
+        required: true 
+    },
+    password: {
+        type: String, 
+        required: true 
+    },
+    todoLists: [{ 
+        type: String, 
+        ref: 'TodoList'
+    }]
 });
 
 userSchema.pre('save', function(next) {
@@ -31,6 +42,11 @@ userSchema.pre('save', function(next) {
             next();
         });
     });
+});
+
+userSchema.pre('remove', function(next) {
+    TodoList.remove({ userRefId: this._id }).exec();
+    next();
 });
 
 userSchema.methods.comparePassword = function(candidatePassword, cb) {
